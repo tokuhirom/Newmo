@@ -25,7 +25,8 @@ sub make_full {
     for my $row (@{$self->{data}}) {
         if ( $url =~ /$row->{data}->{url}/ ) {
             my $tree = HTML::TreeBuilder::XPath->new();
-            $tree->parse_content($html);
+            $tree->parse($html);
+            $tree->eof;
             my @contents = $tree->findnodes( $row->{data}->{xpath} );
             if (@contents) {
                 my $res = join "\n",

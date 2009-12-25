@@ -2,7 +2,6 @@ use strict;
 use warnings;
 use Newmo::Crawler;
 use File::Temp qw(tempfile);
-use YAML;
 use Getopt::Long;
 
 my $conffile = 'config.yaml';
@@ -12,7 +11,7 @@ GetOptions(
 
 my $dedup_file = tempfile();
 
-my $conf = YAML::LoadFile($conffile);
+my $conf = do $conffile;
 
 my $db = Newmo::M::DB::Feed->new($conf->{'M::DB::Feed'});
 my $ua = LWP::UserAgent::WithCache->new(

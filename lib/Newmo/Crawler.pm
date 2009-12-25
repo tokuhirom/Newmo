@@ -1,15 +1,19 @@
 package Newmo::Crawler;
 use Mouse;
-use XML::Feed;
-use URI;
-use HTML::Feature;
 use HTML::ExtractContent;
-use HTML::ResolveLink;
-use JSON ();
-use HTML::TreeBuilder::LibXML;
 use HTML::LDRFullFeed;
-use XML::Feed::Deduper;
+use HTML::ResolveLink;
+use HTML::TreeBuilder::LibXML;
+use JSON ();
 use LWP::UserAgent;
+use URI;
+use XML::Feed::Deduper;
+use XML::Feed;
+
+BEGIN {
+    HTML::TreeBuilder::LibXML->replace_original();
+    1; # hack for context.
+};
 
 our $VERSION = 0.01;
 
@@ -108,7 +112,7 @@ sub entry_full_text {
     # extract by HTML::LDRFullFeed
     do {
         my $ldrfullfeed = HTML::LDRFullFeed->new($self->ldrfullfeed_data);
-        my $ret = $ldrfullfeed->make_full($content);
+        my $ret = $ldrfullfeed->make_full($url, $content);
         return $ret if $ret;
     };
 

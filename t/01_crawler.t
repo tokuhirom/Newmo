@@ -10,8 +10,7 @@ my $db = Newmo::M::DB::Feed->new({
     dsn => 'dbi:SQLite:',
 });
 
-my $cache_file = tempfile();
-my $dedup_file = tempfile();
+my ($dedup_fh, $dedup_fn) = tempfile();
 
 my $sql = slurp('sql/newmo.sql');
 for my $s (split /;/, $sql) {
@@ -20,9 +19,8 @@ for my $s (split /;/, $sql) {
 }
 
 my $crawler = Newmo::Crawler->new(
-    cache_file => "$cache_file",
     db         => $db,
-    dedup_file => "$dedup_file",
+    dedup_file => $dedup_fn,
 );
 is ref($crawler->ldrfullfeed_data()), 'ARRAY';
 $crawler->crawl('http://blog.livedoor.jp/dankogai/index.rdf');

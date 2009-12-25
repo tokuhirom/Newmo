@@ -3,6 +3,16 @@ use inc::Module::Install;
 all_from 'lib/Newmo.pm';
 license 'perl';
 
+requires 'HTML::ExtractContent';
+requires 'HTML::ResolveLink';
+requires 'HTML::TreeBuilder::LibXML';
+requires 'JSON';
+requires 'LWP::UserAgent';
+requires 'Mouse';
+requires 'URI';
+requires 'XML::Feed';
+requires 'XML::Feed::Deduper';
+
 test_requires 'Test::Requires';
 
 tests 't/*.t t/*/*.t t/*/*/*.t';
