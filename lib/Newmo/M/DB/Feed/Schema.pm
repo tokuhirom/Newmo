@@ -4,22 +4,32 @@ use warnings;
 use DBIx::Skinny::Schema;
 
 install_table feed => schema {
-    pk 'id';
+    pk 'feed_id';
     columns qw/
-        id
+        feed_id
         link
         title
     /;
 };
 
 install_table entry => schema {
-    pk 'id';
+    pk 'entry_id';
     columns qw/
-        id
+        entry_id
         feed_id
         link
         title
         content
+    /;
+};
+
+install_table entry_page => schema {
+    pk 'entry_page_id';
+    columns qw/
+        entry_page_id
+        entry_id
+        page_no
+        body
     /;
 };
 

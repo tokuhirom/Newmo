@@ -1,4 +1,4 @@
 package Newmo;
-use strict;
+use Amon;
 
 1;

@@ -12,6 +12,10 @@ requires 'Mouse';
 requires 'URI';
 requires 'XML::Feed';
 requires 'XML::Feed::Deduper';
+requires 'XMLRPC::Lite';
+requires 'HTML::Split';
+requires 'Amon';
+requires 'DBIx::Skinny';
 
 test_requires 'Test::Requires';
 

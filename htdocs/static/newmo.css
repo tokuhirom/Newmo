@@ -1,0 +1,44 @@
+@charset "UTF-8";
+
+body {
+    background-color: white;
+    color: black;
+    font-family: "ヒラギノ角ゴ ProN W3", "Hiragino Kaku Gothic ProN",
+                 "ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",
+                 "メイリオ", "Meiryo", "Osaka", "ＭＳ Ｐゴシック",
+                 "Verdana", sans-serif;
+}
+
+img {
+    border: 0 none;
+}
+
+.title {
+    background-color: #00bfff;
+    border-bottom: 1px solid black;
+    color: white;
+}
+
+hr.hr {
+    background-color: #EAF2F5;
+    color: #EAF2F5;
+    height: 3px;
+}
+
+.more {
+    text-align: right;
+    font-size: x-small;
+}
+
+.footer {
+    font-size: x-small;
+}
+
+.link {
+    font-size: xx-small;
+    text-align: right;
+}
+
+.pager {
+    text-align: center;
+}
