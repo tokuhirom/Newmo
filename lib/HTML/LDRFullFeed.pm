@@ -57,3 +57,6 @@ HTML::LDRFullFeed - make html as full content by LDRFullFeed metadata
 
 =head1 DESCRIPTION
 
+=head1 LICENSE
+
+same as perl itself
