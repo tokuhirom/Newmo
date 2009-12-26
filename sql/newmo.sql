@@ -8,14 +8,14 @@ create table feed (
 create table entry (
     entry_id integer primary key autoincrement,
     feed_id integer not null,
-    link text not null unique,
+    link text not null,
     title varchar(255),
     content text,
     hatenabookmark_users integer default 0,
     issued integer,
     modified integer
 );
-create index feed_id on entry (feed_id);
+create unique index feed_link on entry (feed_id, link);
 
 create table entry_page (
     entry_page_id integer primary key autoincrement,

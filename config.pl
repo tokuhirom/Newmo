@@ -1,3 +1,7 @@
+use File::Spec;
+my $cachedir = File::Spec->catfile(File::Spec->tmpdir, "newmo.cache.$<");
+mkdir $cachedir unless -d $cachedir;
+
 {
     'M::DB::Feed' => {
         dsn             => 'dbi:SQLite:dbname=foo.db',
@@ -12,6 +16,12 @@
         'http://api.pathtraq.com/newsite',
         'http://api.pathtraq.com/popular?__lang=ja',
     ],
+    'LWP::UserAgent::WithCache' => {
+        parse_head => 0,
+        'namespace' => 'lwp-cache',
+        cache_root => $cachedir,
+        default_expires_in => 600,
+    },
     'HTML::Scrubber' => {
         rules => {
             img => {
