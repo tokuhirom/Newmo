@@ -18,23 +18,6 @@ has db => (
     required => 1,
 );
 
-has ldrfullfeed_data => (
-    is      => 'ro',
-    isa     => 'ArrayRef',
-    lazy    => 1,
-    default => sub {
-        my ($self) = @_;
-        my $res =
-          $self->ua->get('http://wedata.net/databases/LDRFullFeed/items.json');
-        if ( $res->is_success ) {
-            JSON::decode_json( $res->decoded_content );
-        }
-        else {
-            die $res->status_line;
-        }
-    }
-);
-
 has dedup_file => (
     is       => 'ro',
     isa      => 'Str',
@@ -168,9 +151,9 @@ sub entry_full_text {
     my $resolver = HTML::ResolveLink->new(base => $url);
     $content = $resolver->resolve($content);
 
-    # extract by HTML::LDRFullFeed
-    my $res = $self->eft->extract($url, $content);
-    return $res;
+    # extract by HTML::EFT
+    $content = $self->eft->extract($url, $content);
+    return $content;
 }
 
 1;
