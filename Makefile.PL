@@ -16,6 +16,7 @@ requires 'XMLRPC::Lite';
 requires 'HTML::Split';
 requires 'Amon';
 requires 'DBIx::Skinny';
+requires 'LWP::UserAgent::WithCache';
 
 test_requires 'Test::Requires';
 
