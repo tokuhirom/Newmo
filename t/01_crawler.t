@@ -5,6 +5,7 @@ use Newmo::M::DB::Feed;
 use File::Temp qw/tempfile/;
 use File::Spec;
 use Test::More;
+use HTML::Scrubber;
 
 my $db = Newmo::M::DB::Feed->new({
     dsn => 'dbi:SQLite:',
@@ -18,9 +19,11 @@ for my $s (split /;/, $sql) {
     $db->dbh->do($s) or die $db->dbh->error;
 }
 
+my $scrubber = HTML::Scrubber->new();
 my $crawler = Newmo::Crawler->new(
     db         => $db,
     dedup_file => $dedup_fn,
+    scrubber   => $scrubber,
 );
 is ref($crawler->ldrfullfeed_data()), 'ARRAY';
 $crawler->crawl('http://blog.livedoor.jp/dankogai/index.rdf');
