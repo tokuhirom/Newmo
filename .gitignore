@@ -1,2 +1,4 @@
 *.db
 *.db-journal
+inc/
+Makefile
