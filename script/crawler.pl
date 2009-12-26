@@ -10,8 +10,6 @@ use Newmo::M::DB::Feed;
 use LWP::UserAgent::WithCache;
 use HTML::Scrubber;
 use Try::Tiny;
-use Coro;
-use Coro::LWP;
 
 my $conffile = 'config.pl';
 GetOptions(
@@ -42,16 +40,12 @@ my $crawler = Newmo::Crawler->new(
 # -------------------------------------------------------------------------
 
 sub main {
-    my @coros;
     for my $feed (@{ $conf->{feeds} }) {
-        push @coros, async {
-            try {
-                $crawler->crawl($feed);
-            } catch {
-                print STDERR "ERROR: $feed: $_\n";
-            };
+        try {
+            $crawler->crawl($feed);
+        } catch {
+            print STDERR "ERROR: $feed: $_\n";
         };
     }
-    $_->join for @coros;
 }
 
