@@ -3,7 +3,6 @@ use Mouse;
 use HTML::ExtractContent;
 use HTML::LDRFullFeed;
 use HTML::ResolveLink;
-use HTML::TreeBuilder::LibXML;
 use JSON ();
 use LWP::UserAgent;
 use URI;
@@ -11,11 +10,6 @@ use XML::Feed::Deduper;
 use XML::Feed;
 use HTML::Split;
 use XMLRPC::Lite;
-
-BEGIN {
-    HTML::TreeBuilder::LibXML->replace_original();
-    1; # hack for context.
-};
 
 our $VERSION = 0.01;
 
