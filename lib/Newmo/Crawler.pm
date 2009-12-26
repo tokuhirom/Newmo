@@ -93,7 +93,7 @@ sub crawl {
 
     # find or update feed table
     for my $entry (@entries) {
-        my $content = $self->entry_full_text($entry->link) || $entry->content;
+        my $content = $self->entry_full_text($entry->link) || $entry->content->body;
         $content = $self->scrubber->scrub($content);
 
         my $erow = $self->db->find_or_create(entry => {
