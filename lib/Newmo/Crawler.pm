@@ -1,7 +1,5 @@
 package Newmo::Crawler;
 use Mouse;
-use HTML::ExtractContent;
-use HTML::LDRFullFeed;
 use HTML::ResolveLink;
 use JSON ();
 use LWP::UserAgent;
@@ -10,6 +8,7 @@ use XML::Feed::Deduper;
 use XML::Feed;
 use HTML::Split;
 use XMLRPC::Lite;
+use HTML::EFT;
 
 our $VERSION = 0.01;
 
@@ -70,6 +69,18 @@ has 'scrubber' => (
     is       => 'ro',
     isa      => 'HTML::Scrubber',
     required => 1,
+);
+
+has eft => (
+    is => 'ro',
+    isa => 'HTML::EFT',
+    default => sub {
+        HTML::EFT->new(
+            'AutoPagerize',
+            'GoogleAdSection',
+            'ExtractContent'
+        );
+    }
 );
 
 sub crawl {
@@ -158,20 +169,8 @@ sub entry_full_text {
     $content = $resolver->resolve($content);
 
     # extract by HTML::LDRFullFeed
-    do {
-        my $ldrfullfeed = HTML::LDRFullFeed->new($self->ldrfullfeed_data);
-        my $ret = $ldrfullfeed->make_full($url, $content);
-        return $ret if $ret;
-    };
-
-    # extract by HTML::ExtractContent
-    do {
-        my $extractor = HTML::ExtractContent->new;
-        $extractor->extract($content);
-        $content = $extractor->as_html;
-    };
-
-    return $content;
+    my $res = $self->eft->extract($url, $content);
+    return $res;
 }
 
 1;

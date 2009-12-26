@@ -3,6 +3,7 @@ use warnings;
 use FindBin;
 use File::Spec;
 use lib File::Spec->catfile($FindBin::Bin, '..', 'lib');
+use lib File::Spec->catfile($FindBin::Bin, '..', 'vender', 'HTML-EFT', 'lib');
 use File::Temp qw(tempfile);
 use Getopt::Long;
 use Newmo::Crawler;
