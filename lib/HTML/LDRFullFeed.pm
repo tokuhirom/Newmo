@@ -30,7 +30,7 @@ sub make_full {
             my @contents = $tree->findnodes( $row->{data}->{xpath} );
             if (@contents) {
                 my $res = join "\n",
-                    map { $_->as_HTML(q{<>&"'}) } @contents;
+                    map { $_->as_XML(q{<>&"'}) } @contents;
                 $tree = $tree->delete;
                 return $res;
             }
