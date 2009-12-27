@@ -1,6 +1,6 @@
 package Newmo::Web;
 use Newmo;
 use Amon::Web (
-    default_view_class => 'Newmo::V::MT',
+    default_view_class => 'MT',
 );
 1;
