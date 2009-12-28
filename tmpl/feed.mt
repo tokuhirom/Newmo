@@ -6,11 +6,13 @@
 
 <div class="title"><?= $feed->title ?></div>
 
+<div class="feed">
 <ul>
 <? for my $entry (@{$entries}) { ?>
-    <li><?= $entry->content =~ /<html/ ? '*' : '' ?><a href="<?= uri_for("/entry/@{[ $entry->entry_id ]}/1") ?>"><?= $entry->title ?></a><? if ($entry->{hatena_bookmark_count}) { ?>[<?= $entry->{hatena_bookmark_count} ?>users]<? } ?></li>
+    <li><?= $entry->content =~ /<html/ ? '*' : '' ?><a href="<?= uri_for("/entry/@{[ $entry->entry_id ]}/1") ?>"><?= $entry->title ?></a><?= show_hatena_users_count($entry) ?></li>
 <? } ?>
 </ul>
+</div>
 
 <hr class="hr" />
 

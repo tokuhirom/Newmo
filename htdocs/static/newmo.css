@@ -14,7 +14,6 @@ img {
 }
 
 .title {
-    background-color: #00bfff;
     border-bottom: 1px solid black;
     color: white;
 }
@@ -51,8 +50,9 @@ hr.hr {
 
 .feed li {
     list-style:none;
+    list-style-image: url(li16.png);
 }
 
 ul {
-    padding-left: 6px;
+    padding-left: 32px;
 }
