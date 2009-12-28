@@ -5,7 +5,7 @@
 
 <div class="title"><?= $entry->title ?></div>
 <div class="body"><?= encoded_string($entry_page->body) ?></div>
-<div class="link"><a href="<? unless (mobile_agent()->is_non_mobile) { ?>http://mgw.hatena.ne.jp/?<? } ?><?= $entry->link ?>"><?= $entry->link ?></a><? if ($entry_page->{hatena_bookmark_count}) { ?>[<a href="http://b.hatena.ne.jp/entry/<?= $entry->link ?>"><?= $entry->{hatena_bookmark_count} ?>users</a>]<? } ?></div>
+<div class="link"><a href="<? unless (mobile_agent()->is_non_mobile) { ?>http://mgw.hatena.ne.jp/?<? } ?><?= $entry->link ?>"><?= $entry->link ?></a><? if ($entry->hatenabookmark_users) { ?>[<a href="http://b.hatena.ne.jp/entry/<?= $entry->link ?>" class="users"><?= $entry->hatenabookmark_users ?>users</a>]<? } ?></div>
 
 <hr class="hr" />
 

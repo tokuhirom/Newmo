@@ -20,6 +20,7 @@ install_table entry => schema {
         link
         title
         content
+        hatenabookmark_users
     /;
 };
 
