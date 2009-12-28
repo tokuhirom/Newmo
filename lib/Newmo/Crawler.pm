@@ -59,8 +59,10 @@ has eft => (
     isa => 'HTML::EFT',
     default => sub {
         HTML::EFT->new(
-            'AutoPagerize',
+            'BodyDetect',
             'GoogleAdSection',
+            'AutoPagerize',
+            'LDRFullFeed',
             'ExtractContent'
         );
     }
