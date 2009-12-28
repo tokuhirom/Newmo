@@ -147,6 +147,10 @@ sub entry_full_text {
     # fetch full html
     my $res = $self->ua->get($url);
     return unless $res->is_success;
+    unless (scalar($res->content_type) =~ m{^text/}) {
+        warn "skip $url because " . $res->content_type;
+        return;
+    }
     my $content = $res->decoded_content;
 
     # make absolute url
