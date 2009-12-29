@@ -11,7 +11,7 @@ use File::Basename;
 my $basedir = File::Spec->rel2abs(dirname(__FILE__));
 
 my $config = do 'config.pl';
-my $app = Newmo::Web->app(
+my $app = Newmo::Web->to_app(
     config => $config
 );
 
