@@ -4,8 +4,13 @@ mkdir $cachedir unless -d $cachedir;
 
 {
     'M::DB::Feed' => {
-        dsn             => 'dbi:SQLite:dbname=foo.db',
-        connect_options => +{ 'sqlite_unicode' => 1 },
+        dsn             => 'dbi:mysql:database=dev_Newmo',
+        username => 'root',
+        password => '',
+        connect_options => +{
+            mysql_read_default_file => '/etc/mysql/my.cnf',
+            mysql_enable_utf8       => 1,
+        },
     },
     feeds      => [
 #       'http://blog.livedoor.jp/dankogai/index.rdf',
