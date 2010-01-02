@@ -1,4 +1,3 @@
 package Newmo;
-use Amon;
-
+use Amon -base;
 1;
