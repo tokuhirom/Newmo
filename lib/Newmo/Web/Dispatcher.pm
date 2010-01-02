@@ -12,17 +12,17 @@ sub dispatch {
 
     given ($req->path_info) {
         when ('/') {
-            Newmo::Web::C::Root->index();
+            return Newmo::Web::C::Root->index();
         }
         when (qr{^/feed/(\d+)$}) {
-            Newmo::Web::C::Feed->show($1);
+            return Newmo::Web::C::Feed->show($1);
         }
         when (qr{^/entry/(\d+)/(\d+)$}) {
             # $1=entry_id, $2=page_no
-            Newmo::Web::C::Entry->show($1, $2);
+            return Newmo::Web::C::Entry->show($1, $2);
         }
         default {
-            res_404();
+            return res_404();
         }
     }
 }
