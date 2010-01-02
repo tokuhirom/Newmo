@@ -2,3 +2,5 @@
 *.db-journal
 inc/
 Makefile
+nytprof/
+nytprof.out
