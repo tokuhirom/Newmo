@@ -1,3 +1,6 @@
 [submodule "vender/HTML-EFT"]
 	path = vender/HTML-EFT
 	url = git://github.com/tokuhirom/p5-html-eft.git
+[submodule "vendor/Amon"]
+	path = vendor/Amon
+	url = git://github.com/tokuhirom/Amon.git
