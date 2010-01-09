@@ -20,6 +20,7 @@ mkdir $cachedir unless -d $cachedir;
         'http://feeds.digg.com/digg/container/technology/popular.rss',
         'http://api.pathtraq.com/newsite',
         'http://api.pathtraq.com/popular?__lang=ja',
+        'http://delicious.com/?view=hotlist',
     ],
     'LWP::UserAgent::WithCache' => {
         parse_head => 0,
