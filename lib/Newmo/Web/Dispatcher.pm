@@ -8,9 +8,9 @@ use Newmo::Web::C::Entry;
 use 5.010;
 
 sub dispatch {
-    my ($class, $req) = @_;
+    my ($class, $c) = @_;
 
-    given ($req->path_info) {
+    given ($c->request->path_info) {
         when ('/') {
             return Newmo::Web::C::Root->index();
         }
