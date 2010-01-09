@@ -1,6 +1,4 @@
-package Newmo::M::DB::Feed::Schema;
-use strict;
-use warnings;
+package Newmo::DB::Schema;
 use DBIx::Skinny::Schema;
 
 install_table feed => schema {

@@ -33,7 +33,7 @@ sub setup_mysqld {
         next unless $sql =~ /\S/;
         $dbh->do("$sql") or die;
     }
-    $CONFIG->{'M::DB::Feed'}->{dsn} = $mysqld->dsn;
+    $CONFIG->{'DB'}->{dsn} = $mysqld->dsn;
     return $mysqld;
 }
 

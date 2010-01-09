@@ -6,8 +6,6 @@ use lib File::Spec->catfile($FindBin::Bin, '..', 'lib');
 use lib File::Spec->catfile($FindBin::Bin, '..', 'vender', 'HTML-EFT', 'lib');
 use File::Temp qw(tempfile);
 use Getopt::Long;
-use Newmo::Crawler;
-use Newmo::M::DB::Feed;
 use Try::Tiny;
 use Newmo;
 

@@ -26,7 +26,7 @@ __PACKAGE__->add_factory(
         my $klass = "Newmo::Crawler";
         Amon::Util::load_class($klass);
         $klass->new(
-            db         => $c->model('DB::Feed'),
+            db         => $c->get('DB'),
             ua         => $c->get('LWP::UserAgent::WithCache'),
             scrubber   => $c->get('HTML::Scrubber'),
             dedup_file => $dedup_file,

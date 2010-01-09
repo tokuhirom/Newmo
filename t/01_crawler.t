@@ -1,25 +1,16 @@
 use strict;
 use warnings;
-use Newmo::Crawler;
-use Newmo::M::DB::Feed;
-use File::Temp qw/tempfile/;
-use File::Spec;
 use Test::More;
-use HTML::Scrubber;
 use t::Utils;
+use File::Temp qw/tempfile/;
+use Newmo;
 
 my ($dedup_fh, $dedup_fn) = tempfile();
 
 my $c = setup_standalone();
-my $db = $c->model('DB::Feed');
 
 note "setuped db";
-my $scrubber = HTML::Scrubber->new();
-my $crawler = Newmo::Crawler->new(
-    db         => $db,
-    dedup_file => $dedup_fn,
-    scrubber   => $scrubber,
-);
+my $crawler = $c->get('Crawler', $dedup_fn);
 note "ready to run";
 $crawler->crawl('http://blog.livedoor.jp/dankogai/index.rdf');
 ok 'works';

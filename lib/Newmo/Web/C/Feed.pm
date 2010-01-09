@@ -6,8 +6,8 @@ sub show {
     my $page = param('page') || 1;
     my $rows_per_page = 20;
 
-    my ($feed) = model('DB::Feed')->search('feed' => { feed_id => $feed_id } );
-    my @entries = model('DB::Feed')->search(
+    my ($feed) = db->search('feed' => { feed_id => $feed_id } );
+    my @entries = db->search(
         'entry' => { feed_id => $feed_id },
         {
             order_by => {'entry_id' => 'DESC'},

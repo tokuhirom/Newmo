@@ -167,9 +167,6 @@ __END__
 
 =head1 SYNOPSIS
 
-    my $crawler = Newmo::Crawler->new(
-        db => Newmo::DB::Feed->new(),
-        dedup_file => '/path/to/dedupe'
-    );
+    my $crawler = $c->get('Crawler', '/path/to/dedup-file');
     $crawler->crawl('http://example.com/foo.rss');
 

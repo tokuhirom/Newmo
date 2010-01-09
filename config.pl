@@ -3,7 +3,7 @@ my $cachedir = File::Spec->catfile(File::Spec->tmpdir, "newmo.cache.$<");
 mkdir $cachedir unless -d $cachedir;
 
 {
-    'M::DB::Feed' => {
+    'DB' => {
         dsn             => 'dbi:mysql:database=dev_Newmo',
         username => 'root',
         password => '',
