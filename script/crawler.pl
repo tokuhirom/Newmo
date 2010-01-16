@@ -4,6 +4,7 @@ use FindBin;
 use File::Spec;
 use lib File::Spec->catfile($FindBin::Bin, '..', 'lib');
 use lib File::Spec->catfile($FindBin::Bin, '..', 'vender', 'HTML-EFT', 'lib');
+use lib File::Spec->catfile($FindBin::Bin, '..', 'vendor', 'Amon', 'lib');
 use Getopt::Long;
 use Try::Tiny;
 use Newmo;
