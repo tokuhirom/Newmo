@@ -21,7 +21,13 @@ has db => (
 has dedup_file => (
     is       => 'ro',
     isa      => 'Str',
-    required => 1,
+    default => sub {
+        my $self = shift;
+        require File::Temp;
+        my $t = File::Temp->new(UNLINK => 1);
+        $self->{_dedup_file_tmp} = $t;
+        $t->filename();
+    },
 );
 
 has deduper => (

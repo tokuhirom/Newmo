@@ -22,14 +22,14 @@ __PACKAGE__->add_factory(
 );
 __PACKAGE__->add_factory(
     'Crawler' => sub {
-        my ($c, $name, $conf, $dedup_file ) = @_;
+        my ($c, $name, $conf) = @_;
         my $klass = "Newmo::Crawler";
         Amon::Util::load_class($klass);
         $klass->new(
             db         => $c->get('DB'),
             ua         => $c->get('LWP::UserAgent::WithCache'),
             scrubber   => $c->get('HTML::Scrubber'),
-            dedup_file => $dedup_file,
+            %$conf,
         );
     },
 );

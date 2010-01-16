@@ -4,7 +4,6 @@ use FindBin;
 use File::Spec;
 use lib File::Spec->catfile($FindBin::Bin, '..', 'lib');
 use lib File::Spec->catfile($FindBin::Bin, '..', 'vender', 'HTML-EFT', 'lib');
-use File::Temp qw(tempfile);
 use Getopt::Long;
 use Try::Tiny;
 use Newmo;
@@ -22,9 +21,8 @@ my $conf = do $conffile;
 # -------------------------------------------------------------------------
 
 sub main {
-    my ($dedup_fh, $dedup_file) = tempfile();
     my $c = Newmo->bootstrap(config => $conf);
-    my $crawler = $c->get('Crawler', $dedup_file);
+    my $crawler = $c->get('Crawler');
 
     for my $feed (@{ $conf->{feeds} }) {
         try {
