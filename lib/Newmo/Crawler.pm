@@ -9,6 +9,9 @@ use XML::Feed;
 use HTML::Split;
 use XMLRPC::Lite;
 use HTML::EFT;
+use Try::Tiny;
+use Scope::Guard;
+use URI::Escape qw/uri_escape/;
 
 our $VERSION = 0.01;
 
@@ -91,7 +94,6 @@ sub crawl {
     });
 
     my @entries = reverse $self->deduper->dedup($feed->entries);
-    my $hateb_count = $self->get_hatena_bookmark_count(@entries);
 
     # find or update feed table
     for my $entry (@entries) {
@@ -102,13 +104,14 @@ sub crawl {
             link    => $entry->link,
             feed_id => $frow->feed_id,
         });
+        my $b_count = $self->get_hatena_bookmark_count($entry->link);
         $erow->update(
             {
                 title    => $entry->title,
                 content  => $content,
                 issued   => $entry->issued ? $entry->issued->epoch : undef,
                 modified => $entry->modified ? $entry->modified->epoch : undef,
-                hatenabookmark_users => $hateb_count->{ $entry->link } || 0,
+                hatenabookmark_users => $b_count || 0,
             }
         );
 
@@ -132,19 +135,23 @@ sub crawl {
 }
 
 sub get_hatena_bookmark_count {
-    my ($self, @entries) = @_;
-    my @links = map { $_->link } @entries;
-    my $map = XMLRPC::Lite->proxy('http://b.hatena.ne.jp/xmlrpc')
-        ->call( 'bookmark.getCount', @links )->result;
-    return +{ } unless $map;
-    
-    my $result = {};
-    for my $entry (@entries) {
-        if (defined(my $count = $map->{$entry->link})) {
-            $result->{$entry->link} = $count;
+    my ($self, $link) = @_;
+    try {
+        local $SIG{ALRM} = sub { die "sigalrm" };
+        alarm 1; my $guard = Scope::Guard->new(sub { alarm 0 });
+
+        my $url = 'http://api.b.st-hatena.com/entry.count?url=' . uri_escape($link);
+        my $res = $self->ua->get($url);
+        if ($res->is_success) {
+            return 0+$res->content(); # 0+ means as_int()
+        } else {
+            warn "cannot get : " . $res->status_line;
+            return 0;
         }
-    }
-    return $result;
+    } catch {
+        warn "hatena[B] timeout!!: $_";
+        return 0;
+    };
 }
 
 sub entry_full_text {
