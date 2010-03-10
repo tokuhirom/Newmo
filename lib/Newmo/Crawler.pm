@@ -143,7 +143,7 @@ sub get_hatena_bookmark_count {
         my $url = 'http://api.b.st-hatena.com/entry.count?url=' . uri_escape($link);
         my $res = $self->ua->get($url);
         if ($res->is_success) {
-            return 0+$res->content(); # 0+ means as_int()
+            return $res->content ? 0+$res->content(): 0; # 0+ means as_int()
         } else {
             warn "cannot get : " . $res->status_line;
             return 0;
