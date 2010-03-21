@@ -9,7 +9,22 @@ use DBI;
 use Test::mysqld;
 use Test::More;
 
-our $CONFIG = { };
+our $CONFIG = {
+    'Logger' => {
+        loggers => [
+            'Screen::Color' => {
+                min_level => 'debug',
+                name      => 'debug',
+                stderr    => 1,
+                color     => {
+                    debug => {
+                        text => 'green',
+                    }
+                }
+            },
+        ],
+    },
+};
 our $SCHEMA  = 'sql/newmo.mysql.sql';
 
 sub setup_standalone {

@@ -12,8 +12,9 @@ use HTML::EFT;
 use Try::Tiny;
 use Scope::Guard;
 use URI::Escape qw/uri_escape/;
+use Amon::Declare;
 
-our $VERSION = 0.01;
+our $VERSION = 0.02;
 
 has db => (
     is       => 'ro',
@@ -47,7 +48,12 @@ has ua => (
     is => 'ro',
     isa => 'LWP::UserAgent',
     default => sub {
-        LWP::UserAgent->new(timeout => 10);
+        my $ua = LWP::UserAgent->new(
+            timeout => 2,
+            agent   => "Newmo/$VERSION",
+        );
+        $ua->agent('Mozilla/5.0');
+        $ua;
     },
 );
 
@@ -82,9 +88,11 @@ sub crawl {
 
     my $txn = $self->db->txn_scope;
 
+    logger->debug("fetching $url");
     my $feed = XML::Feed->parse(URI->new($url))
         or die XML::Feed->errstr;
 
+    logger->debug("find or create DB row");
     my $frow = $self->db->find_or_create(feed => {
         link    => $feed->link,
     });
@@ -97,14 +105,19 @@ sub crawl {
 
     # find or update feed table
     for my $entry (@entries) {
+        logger->debug("  processing @{[ $entry->link ]}");
         my $content = $self->entry_full_text($entry->link) || $entry->content->body || 'no body';
+        logger->debug("    after eft");
         $content = $self->scrubber->scrub($content);
+        logger->debug("    after scrub");
 
         my $erow = $self->db->find_or_create(entry => {
             link    => $entry->link,
             feed_id => $frow->feed_id,
         });
+        logger->debug("    before hatena");
         my $b_count = $self->get_hatena_bookmark_count($entry->link);
+        logger->debug("    after  hatena");
         $erow->update(
             {
                 title    => $entry->title,
@@ -158,8 +171,11 @@ sub entry_full_text {
     my ($self, $url) = @_;
 
     # fetch full html
+    logger->debug("      fetching full html; $url");
     my $res = $self->ua->get($url);
-    return unless $res->is_success;
+    unless ($res->is_success) {
+        logger->debug("        cannot fetch '$url'");
+    }
     unless (scalar($res->content_type) =~ m{^text/}) {
         # warn "skip $url because " . $res->content_type;
         return;
@@ -167,9 +183,11 @@ sub entry_full_text {
     my $content = $res->decoded_content;
 
     # make absolute url
+    logger->debug("      make absolute url");
     my $resolver = HTML::ResolveLink->new(base => $url);
     $content = $resolver->resolve($content);
 
+    logger->debug("      extract by HTML::EFT");
     # extract by HTML::EFT
     $content = $self->eft->extract($url, $content);
     return $content;

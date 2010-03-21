@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rdf:RDF
+ xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+ xmlns="http://purl.org/rss/1.0/"
+ xmlns:content="http://purl.org/rss/1.0/modules/content/"
+ xmlns:taxo="http://purl.org/rss/1.0/modules/taxonomy/"
+ xmlns:dc="http://purl.org/dc/elements/1.1/"
+ xmlns:syn="http://purl.org/rss/1.0/modules/syndication/"
+ xmlns:image="http://purl.org/rss/1.0/modules/image/"
+ xmlns:admin="http://webns.net/mvcb/"
+ xmlns:atom="http://www.w3.org/2005/Atom"
+>
+<channel rdf:about="http://blog.livedoor.jp/dankogai/">
+<title>404 Blog Not Found</title>
+<link>http://blog.livedoor.jp/dankogai/</link>
+<description>The requested blog was not found -- unless you requested that of Dan Kogai (小飼 弾).
+</description>
+<dc:language>ja</dc:language>
+<admin:generatorAgent rdf:resource="http://blog.livedoor.com/?v=2.0" />
+<image rdf:resource="http://image.profile.livedoor.jp/icon/dankogai_60.gif"/>
+<atom:link rel="hub" href="http://pubsubhubbub.appspot.com" />
+<items>
+ <rdf:Seq>
+  <rdf:li rdf:resource="http://blog.livedoor.jp/dankogai/archives/51420496.html" />
+ </rdf:Seq>
+</items>
+</channel>
+<image rdf:about="http://image.profile.livedoor.jp/icon/dankogai_60.gif">
+ <title>404 Blog Not Found</title>
+ <link>http://blog.livedoor.jp/dankogai/</link>
+ <url>http://image.profile.livedoor.jp/icon/dankogai_60.gif</url>
+</image>
+<item rdf:about="http://blog.livedoor.jp/dankogai/archives/51420496.html">
+<title>被害者は私だという全ての人たちへ</title>
+<link>http://blog.livedoor.jp/dankogai/archives/51420496.html</link>
+<description>あなたを慰めるつもりは、微塵もない。
+被害者はいないという大きな男の人たちへ - はてこはだいたい家にいる被害者はいないという大きな男の人たちへ - はてこはだいたい家にいるどうかお願い、聞こえるところでそんな話をしないでね。
+
+「なぜ嫌がるんだ、芝居だよ？ 誰...</description>
+<dc:creator>dankogai</dc:creator>
+<dc:date>2010-03-20T21:00:48+09:00</dc:date>
+<dc:subject>書評/画評</dc:subject>
+<content:encoded><![CDATA[<p>あなたを慰めるつもりは、微塵もない。</p>
+<a target="_blank" href="http://d.hatena.ne.jp/kutabirehateko/20100319/love_sex">被害者はいないという大きな男の人たちへ - はてこはだいたい家にいる</a><a target="_blank" href="http://d.hatena.ne.jp/kutabirehateko/20100319/love_sex">被害者はいないという大きな男の人たちへ - はてこはだいたい家にいる</a><blockquote>どうかお願い、聞こえるところでそんな話をしないでね。
+<p>
+「なぜ嫌がるんだ、芝居だよ？ 誰も君を傷つける気はないさ」
+</p>
+っていうのはね、あんまり慰めにならないよ。本当に襲われたたくさんの人とそっくりの場面があちこちに織り込まれたお芝居を、舌なめずりして見てるのを、安心して見ているのは難しいの。</blockquote>
+<p>なぜなら、あなたには慰められる資格がないからだ。</p>
+<p>私にもない。読者にもない。そんな資格をもった人はおそらくどこにもいない。</p>
+
+<a href="http://blog.livedoor.jp/dankogai/archives/51420496.html">続きを読む</a>
+<img src="http://counter2.blog.livedoor.com/c?ro=1&act=rss&output=no&id=165&name=dankogai&pid=51420496" width="1" height="1" />
+]]>
+</content:encoded>
+</item>
+</rdf:RDF>
