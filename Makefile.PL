@@ -3,6 +3,7 @@ use inc::Module::Install;
 all_from 'lib/Newmo.pm';
 license 'perl';
 
+requires 'HTTP::MobileAgent';
 requires 'HTML::ExtractContent';
 requires 'HTML::ResolveLink';
 requires 'HTML::TreeBuilder::LibXML';
