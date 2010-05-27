@@ -15,8 +15,6 @@ sub show {
         {Slice => {}},
         $feed_id,
     )};
-    warn $feed_id;
-    warn scalar @entries;
     my $has_next =  ($rows_per_page+1 == @entries);
     if ($has_next) { pop @entries }
 
