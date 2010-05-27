@@ -8,8 +8,8 @@ sub mobile_agent {
 
 sub show_hatena_users_count {
     my $entry = shift;
-    if ($entry->hatenabookmark_users) {
-        encoded_string(qq{<a href="http://b.hatena.ne.jp/entry/@{[  $entry->link ]}" class="users">@{[  $entry->hatenabookmark_users ]}users</a>});
+    if ($entry->{hatenabookmark_users}) {
+        encoded_string(qq{<a href="http://b.hatena.ne.jp/entry/@{[  $entry->{link} ]}" class="users">@{[  $entry->{hatenabookmark_users} ]}users</a>});
     } else {
         '';
     }
