@@ -64,3 +64,25 @@ C<EXE_FILES: script/amon-setup.pl>
 
 =back
 
+=head2 Fri May 28 07:10:01 2010: C<Module> L<Amon|Amon>
+
+=over 4
+
+=item *
+
+C<installed into: /home/tokuhirom/dev/Newmo/NewmoEnv/lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.42>
+
+=item *
+
+C<EXE_FILES: script/amon-setup.pl>
+
+=back
+
