@@ -1,24 +1,31 @@
 package Newmo::Web::C::Entry;
-use Amon::Web::C;
+use strict;
+use warnings;
 
 sub show {
-    my ($class, $entry_id, $page_no) = @_;
-    my $entry = db->single(
-        'entry' => { entry_id => $entry_id }
+    my ($class, $c, $entry_id, $page_no) = @_;
+
+    my $entry = $c->db->dbh->selectrow_hashref(
+        q{SELECT * FROM entry WHERE entry_id=?},
+        {},
+        $entry_id
     );
-    my $entry_page_count = db->search_by_sql(
-        q{SELECT COUNT(entry_id) as cnt FROM entry_page where entry_id=?},
-        [$entry_id]
-    )->first->cnt;
-    my $entry_page = db->single(
-        'entry_page' => { entry_id => $entry_id, page_no => $page_no },
+    my $entry_page_count = $c->db->dbh->selectrow_array(
+        q{SELECT COUNT(entry_id) FROM entry_page where entry_id=?},
+        {},
+        $entry_id
+    );
+    my $entry_page = $c->db->dbh->selectrow_hashref(
+        q{SELECT * FROM entry_page WHERE entry_id=? AND page_no=?},
+        {},
+        $entry_id, $page_no,
     );
     unless ($entry_page) {
         warn "cannot get entry_page";
-        return res_404();
+        return $c->res_404();
     }
 
-    render(
+    $c->render(
         'entry.mt',
         $entry,
         $entry_page,
