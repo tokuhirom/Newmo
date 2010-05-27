@@ -16,6 +16,7 @@ create table entry (
     modified int
 ) engine=innodb;
 create unique index feed_link on entry (feed_id, link(255));
+alter table entry add index (feed_id, entry_id);
 
 create table entry_page (
     entry_page_id int primary key auto_increment,
