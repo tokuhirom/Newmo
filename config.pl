@@ -12,6 +12,9 @@ mkdir $cachedir unless -d $cachedir;
             mysql_enable_utf8       => 1,
         },
     },
+    'Cache::Memcached::Fast' => {
+        servers => ['mc1.local:11211'],
+    },
     feeds      => [
 #       'http://blog.livedoor.jp/dankogai/index.rdf',
         'http://b.hatena.ne.jp/entrylist?mode=rss&sort=hot&threshold=5',

@@ -1,5 +1,6 @@
 package Newmo;
 use Amon -base;
+use Carp ();
 
 __PACKAGE__->add_factory(
     'HTML::Scrubber' => sub {
@@ -33,5 +34,26 @@ __PACKAGE__->add_factory(
         );
     },
 );
+__PACKAGE__->add_factory(
+    'Cache::Memcached::Fast' => sub {
+        my ($c, $klass, $conf) = @_;
+        Amon::Util::load_class($klass);
+        Cache::Memcached::Fast->new($conf);
+    }
+);
+
+sub memcached { $_[0]->get('Cache::Memcached::Fast') }
+
+sub Cache::Memcached::Fast::get_or_set_cb {
+    my ( $self, $key, $expire, $cb ) = @_;
+    my $data = $self->get($key);
+    return $data if defined $data;
+    $data = $cb->();
+    $self->set( $key, $data, $expire )
+      or Carp::carp(
+        "Cannot set $key to memcached"
+      );
+    return $data;
+}
 
 1;

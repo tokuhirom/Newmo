@@ -12,7 +12,7 @@ sub dispatch {
 
     given ($c->request->path_info) {
         when ('/') {
-            return Newmo::Web::C::Root->index();
+            return Newmo::Web::C::Root->index($c);
         }
         when (qr{^/feed/(\d+)$}) {
             return Newmo::Web::C::Feed->show($1);
