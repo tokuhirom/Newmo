@@ -14,6 +14,11 @@ mkdir $cachedir unless -d $cachedir;
     },
     'Cache::Memcached::Fast' => {
         servers => ['mc1.local:11211'],
+        namespace => 'dev_Newmo',
+    },
+    'V::Xslate' => {
+        syntax => 'TTerse',
+        module => ['Data::Dumper', 'Newmo::V::Xslate::Context'],
     },
     feeds      => [
 #       'http://blog.livedoor.jp/dankogai/index.rdf',
