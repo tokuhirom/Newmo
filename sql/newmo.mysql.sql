@@ -25,4 +25,5 @@ create table entry_page (
     body text
 ) engine=innodb;
 create unique index entry_id_page_no on entry_page (entry_id, page_no);
+ALTER TABLE entry_page ADD FOREIGN KEY (entry_id) REFERENCES entry(entry_id) ON DELETE CASCADE;
 
