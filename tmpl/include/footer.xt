@@ -1,0 +1,8 @@
+
+        <hr class="hr" />
+
+        <div class="footer">
+            <a href="[% uri_for('/', {t => time()}) %]" accesskey="0">go to top[0]</a><br />
+        </div>
+    </body>
+</html>

@@ -1,33 +1,29 @@
-? my ($feed, $entries, $page, $has_next) = @_;
-? extends('base.mt');
+[% INCLUDE "include/header.xt" %]
 
-? block content => sub {
-
-
-<div class="title"><?= $feed->{title} ?></div>
+<div class="title">[% feed.title %]</div>
 
 <div class="feed">
 <ul>
-<? for my $entry (@{$entries}) { ?>
-    <li><?= $entry->{content} =~ /<html/ ? '*' : '' ?><a href="<?= uri_for("/entry/@{[ $entry->{entry_id} ]}/1") ?>"><?= $entry->{title} ?></a><?= show_hatena_users_count($entry) ?></li>
-<? } ?>
+[% FOR entry IN entries %]
+    <li><a href="[% uri_for("/entry/" _ entry.entry_id _ "/1") %]">[% entry.title %]</a>[% show_hatena_users_count(entry) %]</li>
+[% END %]
 </ul>
 </div>
 
 <hr class="hr" />
 
 <div class="pager">
-? if ($page == 1) {
+[% IF page == 1 %]
     前
-? } else {
-    <a href="<?= uri_for("/feed/@{[ $feed->{feed_id} ]}", { page => $page - 1 }) ?>" rel="prev" accesskey="4">前</a>
-? }
+[% ELSE %]
+    <a href="[% uri_for("/feed/" _ feed.feed_id, { page => $page - 1 }) %]" rel="prev" accesskey="4">前</a>
+[% END %]
 |
-? if ($has_next) {
-    <a href="<?= uri_for("/feed/@{[ $feed->{feed_id} ]}", { page => $page + 1 }) ?>" rel="next" accesskey="6">次</a>
-? } else {
+[% IF has_next %]
+    <a href="[% uri_for("/feed/" _ feed.feed_id, { page => page + 1 }) %]" rel="next" accesskey="6">次</a>
+[% ELSE %]
     次
-? }
+[% END %]
 </div>
 
-? };
+[% INCLUDE "include/footer.xt" %]

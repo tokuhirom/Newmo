@@ -1,20 +1,18 @@
-? my ($feeds, $feed2entries) = @_;
-? extends('base.mt');
-? block content => sub {
+[% INCLUDE "include/header.xt" %]
 
-<div class="title"><img src="<?= uri_for('/static/logo.png') ?>" alt="newmo" /></div>
+<div class="title"><img src="[% uri_for('/static/logo.png') %]" alt="newmo" /></div>
 
-?   for my $feed (@$feeds) {
+[% FOREACH feed IN feeds %]
 <div class="feed">
-    <div class="feed_title"><?= $feed->{title} ?></div>
+    <div class="feed_title">[% feed.title %]</div>
     <ul>
-    <? for my $entry (@{$feed2entries->{$feed->{feed_id}}}) { ?>
-        <li><a href="<?= uri_for("/entry/@{[ $entry->{entry_id} ]}/1") ?>"><?= $entry->{title} ?></a><?= show_hatena_users_count($entry) ?></li>
-    <? } ?>
+    [% FOR entry IN feed.entries %]
+        <li><a href="[% uri_for("/entry/" _ entry.entry_id _ "/1") %]">[% entry.title %]</a>[% show_hatena_users_count(entry) %]</li>
+    [% END %]
     </ul>
-    <div class="more"><a href="<?= uri_for("/feed/@{[ $feed->{feed_id} ]}") ?>">more</a></div>
+    <div class="more"><a href="[% uri_for("/feed/" _ feed.feed_id) %]">more</a></div>
 </div>
 <hr size="1" />
-?   }
+[% END %]
 
-? }
+[% INCLUDE "include/footer.xt" %]

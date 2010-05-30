@@ -19,6 +19,7 @@ mkdir $cachedir unless -d $cachedir;
     'V::Xslate' => {
         syntax => 'TTerse',
         module => ['Data::Dumper', 'Newmo::V::Xslate::Context'],
+        cache => 0,
     },
     feeds      => [
 #       'http://blog.livedoor.jp/dankogai/index.rdf',

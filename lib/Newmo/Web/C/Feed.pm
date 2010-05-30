@@ -19,7 +19,13 @@ sub show {
     if ($has_next) { pop @entries }
 
     $c->render(
-        'feed.mt', $feed, \@entries, $page, $has_next
+        'feed.mt',
+        {
+            feed     => $feed,
+            entries  => \@entries,
+            page     => $page,
+            has_next => $has_next
+        },
     );
 }
 

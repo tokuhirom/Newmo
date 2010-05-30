@@ -15,6 +15,8 @@ my $app = Newmo::Web->to_app(
     config => $config
 );
 
+print "Text::Xslate: $Text::Xslate::VERSION\n";
+
 my $map = Plack::App::URLMap->new();
 $map->map('/static/' => Plack::App::File->new({root => File::Spec->catdir($basedir, 'htdocs/static')})->to_app);
 $map->map('/' => $app);

@@ -27,9 +27,11 @@ sub show {
 
     $c->render(
         'entry.mt',
-        $entry,
-        $entry_page,
-        $entry_page_count,
+        {
+            entry            => $entry,
+            entry_page       => $entry_page,
+            entry_page_count => $entry_page_count,
+        }
     );
 }
 
