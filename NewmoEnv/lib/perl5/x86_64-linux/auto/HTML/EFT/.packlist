@@ -1,20 +1,11 @@
-/home/tokuhirom/dev/Newmo/NewmoEnv/bin/../lib/perl5/HTML/EFT.pm
-/home/tokuhirom/dev/Newmo/NewmoEnv/bin/../lib/perl5/HTML/EFT/AutoPagerize.pm
-/home/tokuhirom/dev/Newmo/NewmoEnv/bin/../lib/perl5/HTML/EFT/ExtractContent.pm
-/home/tokuhirom/dev/Newmo/NewmoEnv/bin/../lib/perl5/HTML/EFT/GoogleAdSection.pm
-/home/tokuhirom/dev/Newmo/NewmoEnv/bin/../lib/perl5/HTML/EFT/LDRFullFeed.pm
-/home/tokuhirom/dev/Newmo/NewmoEnv/bin/../man/man3/HTML::EFT.3
-/home/tokuhirom/dev/Newmo/NewmoEnv/bin/../man/man3/HTML::EFT::AutoPagerize.3
-/home/tokuhirom/dev/Newmo/NewmoEnv/bin/../man/man3/HTML::EFT::ExtractContent.3
-/home/tokuhirom/dev/Newmo/NewmoEnv/bin/../man/man3/HTML::EFT::LDRFullFeed.3
-/usr/local/app/perl-5.10.1/lib/site_perl/5.10.1/HTML/EFT.pm relocate_as=../../../../HTML/EFT.pm
-/usr/local/app/perl-5.10.1/lib/site_perl/5.10.1/HTML/EFT/AutoPagerize.pm relocate_as=../../../../HTML/EFT/AutoPagerize.pm
-/usr/local/app/perl-5.10.1/lib/site_perl/5.10.1/HTML/EFT/BodyDetect.pm relocate_as=../../../../HTML/EFT/BodyDetect.pm
-/usr/local/app/perl-5.10.1/lib/site_perl/5.10.1/HTML/EFT/ExtractContent.pm relocate_as=../../../../HTML/EFT/ExtractContent.pm
-/usr/local/app/perl-5.10.1/lib/site_perl/5.10.1/HTML/EFT/GoogleAdSection.pm relocate_as=../../../../HTML/EFT/GoogleAdSection.pm
-/usr/local/app/perl-5.10.1/lib/site_perl/5.10.1/HTML/EFT/LDRFullFeed.pm relocate_as=../../../../HTML/EFT/LDRFullFeed.pm
-/usr/local/app/perl-5.10.1/man/man3/HTML::EFT.3 relocate_as=../../../../../../../man/man3/HTML::EFT.3
-/usr/local/app/perl-5.10.1/man/man3/HTML::EFT::AutoPagerize.3 relocate_as=../../../../../../../man/man3/HTML::EFT::AutoPagerize.3
-/usr/local/app/perl-5.10.1/man/man3/HTML::EFT::BodyDetect.3 relocate_as=../../../../../../../man/man3/HTML::EFT::BodyDetect.3
-/usr/local/app/perl-5.10.1/man/man3/HTML::EFT::ExtractContent.3 relocate_as=../../../../../../../man/man3/HTML::EFT::ExtractContent.3
-/usr/local/app/perl-5.10.1/man/man3/HTML::EFT::LDRFullFeed.3 relocate_as=../../../../../../../man/man3/HTML::EFT::LDRFullFeed.3
+/home/tokuhirom/dev/Newmo/NewmoEnv/lib/perl5/HTML/EFT.pm
+/home/tokuhirom/dev/Newmo/NewmoEnv/lib/perl5/HTML/EFT/AutoPagerize.pm
+/home/tokuhirom/dev/Newmo/NewmoEnv/lib/perl5/HTML/EFT/BodyDetect.pm
+/home/tokuhirom/dev/Newmo/NewmoEnv/lib/perl5/HTML/EFT/ExtractContent.pm
+/home/tokuhirom/dev/Newmo/NewmoEnv/lib/perl5/HTML/EFT/GoogleAdSection.pm
+/home/tokuhirom/dev/Newmo/NewmoEnv/lib/perl5/HTML/EFT/LDRFullFeed.pm
+/home/tokuhirom/dev/Newmo/NewmoEnv/man/man3/HTML::EFT.3
+/home/tokuhirom/dev/Newmo/NewmoEnv/man/man3/HTML::EFT::AutoPagerize.3
+/home/tokuhirom/dev/Newmo/NewmoEnv/man/man3/HTML::EFT::BodyDetect.3
+/home/tokuhirom/dev/Newmo/NewmoEnv/man/man3/HTML::EFT::ExtractContent.3
+/home/tokuhirom/dev/Newmo/NewmoEnv/man/man3/HTML::EFT::LDRFullFeed.3

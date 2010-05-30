@@ -2,11 +2,9 @@ package HTML::EFT;
 use strict;
 use warnings;
 use 5.00800;
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 use UNIVERSAL::require;
 use Data::OptList;
-
-our $DEBUG = $ENV{HTML_EFT_DEBUG};
 
 sub new {
     my $class = shift;
@@ -25,7 +23,6 @@ sub new {
 sub extract {
     my ($self, $url, $html) = @_;
     for my $child (@{$self->{children}}) {
-        print "extracting by $child\n" if $DEBUG;
         my $ret = $child->extract($url, $html);
         if ($ret) {
             return wantarray ? ($ret, $child) : $ret;
