@@ -3,7 +3,7 @@ use warnings;
 use Newmo;
 
 my $conffname = shift @ARGV;
-my $conf = do $conffname or die "cannot load configuration file";
+my $conf = do $conffname or die "cannot load configuration file: $conffname";
 my $c = Newmo->bootstrap(config => $conf);
 
 my ($last_entry_id) = $c->db->dbh->selectrow_array(q{SELECT entry_id FROM entry ORDER BY entry_id DESC LIMIT 1});
