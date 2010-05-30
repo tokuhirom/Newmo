@@ -108,3 +108,25 @@ C<EXE_FILES: >
 
 =back
 
+=head2 Sun May 30 17:12:59 2010: C<Module> L<HTML::EFT|HTML::EFT>
+
+=over 4
+
+=item *
+
+C<installed into: /home/tokuhirom/dev/Newmo/NewmoEnv/lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 0.02>
+
+=item *
+
+C<EXE_FILES: >
+
+=back
+

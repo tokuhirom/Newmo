@@ -5,16 +5,18 @@ use 5.00800;
 our $VERSION = '0.02';
 use UNIVERSAL::require;
 use Data::OptList;
+use Try::Tiny;
 
 sub new {
     my $class = shift;
 
     my $opts = Data::OptList::mkopt(\@_);
-    my @children = map {
-        my ($module_name, $args) = @{$_};
-        $module_name = $module_name =~ s/^\+// ? $module_name : "HTML::EFT::$module_name";
+    my @children = grep { $_ } map {
+        my ( $module_name, $args ) = @{$_};
+        $module_name =
+          $module_name =~ s/^\+// ? $module_name : "HTML::EFT::$module_name";
         $module_name->use or die $@;
-        $module_name->new(%$args);
+        try { $module_name->new(%$args) } catch { warn $_; undef; }
     } @$opts;
 
     bless {children => \@children}, $class;

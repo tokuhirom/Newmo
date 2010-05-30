@@ -8,9 +8,9 @@ sub new {
     unless ($data) {
         require LWP::UserAgent;
         require JSON;
-        my $ua = LWP::UserAgent->new();
+        my $ua = LWP::UserAgent->new(timeout => 1);
         my $res = $ua->get('http://wedata.net/databases/BodyDetect/items.json');
-        if ($res) {
+        if ($res->is_success) {
             $data = JSON::decode_json($res->decoded_content);
         } else {
             die $res->status_line;
