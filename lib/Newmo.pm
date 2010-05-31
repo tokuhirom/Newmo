@@ -2,6 +2,8 @@ package Newmo;
 use Amon -base;
 use Carp ();
 
+our $VERSION = '0.01';
+
 __PACKAGE__->add_factory(
     'HTML::Scrubber' => sub {
         my ($c, $klass, $conf) = @_;
