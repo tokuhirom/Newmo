@@ -25,11 +25,14 @@ __PACKAGE__->add_factory(
     'Crawler' => sub {
         my ($c, $name, $conf) = @_;
         my $klass = "Newmo::Crawler";
+        my $db = $c->get('DB');
+        my $ua = $c->get('LWP::UserAgent::WithCache');
+        my $scrubber = $c->get('HTML::Scrubber');
         Amon::Util::load_class($klass);
         $klass->new(
-            db         => $c->get('DB'),
-            ua         => $c->get('LWP::UserAgent::WithCache'),
-            scrubber   => $c->get('HTML::Scrubber'),
+            db         => $db,
+            ua         => $ua,
+            scrubber   => $scrubber,
             %$conf,
         );
     },
