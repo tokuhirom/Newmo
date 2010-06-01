@@ -18,7 +18,7 @@ requires 'HTML::Split';
 requires 'Amon';
 requires 'DBIx::Skinny';
 requires 'LWP::UserAgent::WithCache';
-requires 'Text::Xslate' => 0.1022;
+requires 'Text::Xslate' => 0.1026;
 
 test_requires 'Test::Requires';
 
