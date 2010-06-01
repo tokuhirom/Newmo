@@ -6,7 +6,7 @@ sub index {
     my ($class, $c) = @_;
 
     my @feeds = @{$c->memcached->get_or_set_cb(
-        'feeds' => 24*60*60 => sub {
+        'feeds:2' => 24*60*60 => sub {
             $c->db->dbh->selectall_arrayref(q{SELECT * FROM feed ORDER BY feed_id ASC}, {Slice => {}});
         }
     )};
