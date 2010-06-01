@@ -25,6 +25,4 @@
     ([% entry_page.page_no %]/[% $entry_page_count %])
     </div>
 
-<hr class="hr" />
-
 [% INCLUDE "include/footer.xt" %]
