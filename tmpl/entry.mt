@@ -5,6 +5,8 @@
 <div class="link">
     <a href="[% entry.link %]">[% $entry.link %]</a>
     <a href="http://mgw.hatena.ne.jp/?[% entry.link %]">[mgw]</a>
+    modified: [% entry.modified %]
+    issued: [% entry.issued %]
     [% IF (entry.hatenabookmark_users > 0) %][<a href="http://b.hatena.ne.jp/entry/[% entry.link %]" class="users">[% entry.hatenabookmark_users %]users</a>][% END %]
 </div>
 

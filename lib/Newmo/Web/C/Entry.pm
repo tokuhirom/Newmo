@@ -6,7 +6,7 @@ sub show {
     my ($class, $c, $entry_id, $page_no) = @_;
 
     my $entry = $c->db->dbh->selectrow_hashref(
-        q{SELECT * FROM entry WHERE entry_id=?},
+        q{SELECT *, FROM_UNIXTIME(issued) AS issued, FROM_UNIXTIME(modified) AS modified FROM entry WHERE entry_id=?},
         {},
         $entry_id
     );
