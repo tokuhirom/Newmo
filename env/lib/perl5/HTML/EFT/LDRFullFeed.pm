@@ -8,9 +8,9 @@ sub new {
     unless ($data) {
         require LWP::UserAgent;
         require JSON;
-        my $ua = LWP::UserAgent->new();
+        my $ua = LWP::UserAgent->new(timeout => 1);
         my $res = $ua->get('http://wedata.net/databases/LDRFullFeed/items.json');
-        if ($res) {
+        if ($res->is_success) {
             $data = JSON::decode_json($res->decoded_content);
         } else {
             die $res->status_line;
@@ -30,7 +30,7 @@ sub extract {
             my @contents = $tree->findnodes( $row->{data}->{xpath} );
             if (@contents) {
                 my $res = join "\n",
-                    map { $_->as_XML(q{<>&"'}) } @contents;
+                    map { $_->as_HTML(q{<>&"'}) } @contents;
                 $tree = $tree->delete;
                 return $res;
             }
