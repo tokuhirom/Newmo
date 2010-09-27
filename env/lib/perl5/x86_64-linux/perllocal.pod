@@ -130,3 +130,25 @@ C<EXE_FILES: >
 
 =back
 
+=head2 Mon Sep 27 09:04:14 2010: C<Module> L<Amon|Amon>
+
+=over 4
+
+=item *
+
+C<installed into: /home/tokuhirom/dev/Newmo/env/lib/perl5>
+
+=item *
+
+C<LINKTYPE: dynamic>
+
+=item *
+
+C<VERSION: 1.03>
+
+=item *
+
+C<EXE_FILES: script/amon-setup.pl>
+
+=back
+

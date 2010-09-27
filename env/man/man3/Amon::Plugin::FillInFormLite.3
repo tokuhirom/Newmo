@@ -123,17 +123,34 @@
 .rm #[ #] #H #V #F C
 .\" ========================================================================
 .\"
-.IX Title "AMON-SETUP 1"
-.TH AMON-SETUP 1 "2010-09-27" "perl v5.12.1" "User Contributed Perl Documentation"
+.IX Title "Amon::Plugin::FillInFormLite 3"
+.TH Amon::Plugin::FillInFormLite 3 "2010-09-27" "perl v5.12.1" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
 .nh
+.SH "NAME"
+Amon::Plugin::FillInFormLite \- HTML::FillInForm::Lite
 .SH "SYNOPSIS"
 .IX Header "SYNOPSIS"
-.Vb 1
-\&    % amon\-setup.pl MyApp
+.Vb 5
+\&  package MyApp::Web;
+\&  use Amon::Web \-base => (
+\&  );
+\&  _\|_PACKAGE_\|_\->load_plugins(qw/FillInFormLite/);
+\&  1;
+\&
+\&  package MyApp::Web::C::Root;
+\&
+\&  sub post_edit {
+\&    render(\*(Aqedit.html\*(Aq)\->fillin_form(req());
+\&  }
+\&
+\&  1;
 .Ve
-.SH "AUTHOR"
-.IX Header "AUTHOR"
-Tokuhiro Matsuno
+.SH "DESCRIPTION"
+.IX Header "DESCRIPTION"
+HTML::FillInForm::Lite version of Amon::Plugin::FillInForm
+.SH "SEE ALSO"
+.IX Header "SEE ALSO"
+HTML::FillInForm::Lite, Amon
