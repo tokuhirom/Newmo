@@ -1,53 +1,28 @@
 package Newmo;
-use Amon -base;
+use strict;
+use warnings;
+use parent qw/Amon2/;
 use Carp ();
 
 our $VERSION = '0.01';
 
-__PACKAGE__->add_factory(
-    'HTML::Scrubber' => sub {
-        my ($c, $klass, $conf) = @_;
-        Amon::Util::load_class($klass);
-        my $scrubber = HTML::Scrubber->new();
-           $scrubber->rules($conf->{rules});
-           $scrubber->default($conf->{default});
-           $scrubber;
-    }
-);
-__PACKAGE__->add_factory(
-    'LWP::UserAgent::WithCache' => sub {
-        my ($c, $klass, $conf ) = @_;
-        Amon::Util::load_class($klass);
-        return $klass->new(
-            $conf || +{}
-        );
-    }
-);
-__PACKAGE__->add_factory(
-    'Crawler' => sub {
-        my ($c, $name, $conf) = @_;
-        my $klass = "Newmo::Crawler";
-        my $db = $c->get('DB');
-        my $ua = $c->get('LWP::UserAgent::WithCache');
-        my $scrubber = $c->get('HTML::Scrubber');
-        Amon::Util::load_class($klass);
-        $klass->new(
-            db         => $db,
-            ua         => $ua,
-            scrubber   => $scrubber,
-            %$conf,
-        );
-    },
-);
-__PACKAGE__->add_factory(
-    'Cache::Memcached::Fast' => sub {
-        my ($c, $klass, $conf) = @_;
-        Amon::Util::load_class($klass);
-        Cache::Memcached::Fast->new($conf);
-    }
-);
+__PACKAGE__->load_plugins(qw/ConfigLoader LogDispatch/);
 
-sub memcached { $_[0]->get('Cache::Memcached::Fast') }
+use Cache::Memcached::Fast;
+sub memcached {
+    my ($c, ) = @_;
+    my $conf = $c->config->{'Cache::Memcached::Fast'} // die "missing configuration for memcached";
+    Cache::Memcached::Fast->new($conf);
+}
+
+use Newmo::DB;
+sub db {
+    my ($c) = @_;
+    $c->{db} //= do {
+        my $conf = $c->config->{'DB'} // die "missing configuration for db";
+        Newmo::DB->new($conf);
+    };
+}
 
 sub Cache::Memcached::Fast::get_or_set_cb {
     my ( $self, $key, $expire, $cb ) = @_;
