@@ -3,7 +3,9 @@ use strict;
 use warnings;
 
 sub show {
-    my ($class, $c, $entry_id, $page_no) = @_;
+    my ($class, $c, $args) = @_;
+    my $entry_id = $args->{entry_id} // die;
+    my $page_no = $args->{page_no} // die;
 
     my $entry = $c->db->dbh->selectrow_hashref(
         q{SELECT *, FROM_UNIXTIME(issued) AS issued, FROM_UNIXTIME(modified) AS modified FROM entry WHERE entry_id=?},

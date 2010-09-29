@@ -1,24 +1,20 @@
 use strict;
 use warnings;
-use FindBin;
 use File::Spec;
-use lib File::Spec->catfile($FindBin::Bin, 'lib');
+use File::Basename;
+use local::lib File::Spec->catdir(dirname(__FILE__), 'extlib');
+use lib File::Spec->catdir(dirname(__FILE__), 'lib');
 use Newmo::Web;
 use Plack::App::File;
-use Plack::App::URLMap;
 use File::Basename;
+use Plack::Builder;
 
-my $basedir = File::Spec->rel2abs(dirname(__FILE__));
+builder {
+    enable 'Plack::Middleware::Static',
+        path => qr{^/static/},
+        root => './htdocs/';
+    enable 'Plack::Middleware::ReverseProxy';
 
-my $config = do 'config.pl';
-my $app = Newmo::Web->to_app(
-    config => $config
-);
-
-print "Text::Xslate: $Text::Xslate::VERSION\n";
-
-my $map = Plack::App::URLMap->new();
-$map->map('/static/' => Plack::App::File->new({root => File::Spec->catdir($basedir, 'htdocs/static')})->to_app);
-$map->map('/' => $app);
-$map->to_app;
+    Newmo::Web->to_app();
+};
 

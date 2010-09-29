@@ -3,7 +3,9 @@ use strict;
 use warnings;
 
 sub show {
-    my ($class, $c, $feed_id) = @_;
+    my ($class, $c, $args) = @_;
+    my $feed_id = $args->{feed_id};
+
     my $page = $c->req->param('page') || 1;
     my $rows_per_page = 20;
 

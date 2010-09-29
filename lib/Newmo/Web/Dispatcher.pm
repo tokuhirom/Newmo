@@ -1,30 +1,11 @@
 package Newmo::Web::Dispatcher;
 use strict;
 use warnings;
-use Amon::Web::Dispatcher;
-use Newmo::Web::C::Root;
-use Newmo::Web::C::Feed;
-use Newmo::Web::C::Entry;
+use Amon2::Web::Dispatcher::RouterSimple;
 use 5.010;
 
-sub dispatch {
-    my ($class, $c) = @_;
-
-    given ($c->request->path_info) {
-        when ('/') {
-            return Newmo::Web::C::Root->index($c);
-        }
-        when (qr{^/feed/(\d+)$}) {
-            return Newmo::Web::C::Feed->show($c, $1);
-        }
-        when (qr{^/entry/(\d+)/(\d+)$}) {
-            # $1=entry_id, $2=page_no
-            return Newmo::Web::C::Entry->show($c, $1, $2);
-        }
-        default {
-            return res_404();
-        }
-    }
-}
+connect '/'                                   => 'Root#index';
+connect '/feed/{feed_id:\d+}'                 => 'Feed#show';
+connect '/entry/{entry_id:\d+}/{page_no:\d+}' => 'Entry#show';
 
 1;

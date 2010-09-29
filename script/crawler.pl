@@ -5,27 +5,28 @@ use File::Spec;
 use lib File::Spec->catfile($FindBin::Bin, '..', 'lib');
 use lib File::Spec->catfile($FindBin::Bin, '..', 'vender', 'HTML-EFT', 'lib');
 use lib File::Spec->catfile($FindBin::Bin, '..', 'vendor', 'Amon', 'lib');
-use Getopt::Long;
 use Try::Tiny;
 use Newmo;
-
-my $conffile = 'config.pl';
-GetOptions(
-    'c|config=s' => \$conffile,
-);
-
-die "cannot read configuration file: $conffile" unless -f $conffile;
-my $conf = do $conffile;
+use Newmo::Crawler;
+use HTML::Scrubber;
 
 &main;exit;
 
 # -------------------------------------------------------------------------
 
 sub main {
-    my $c = Newmo->bootstrap(config => $conf);
-    my $crawler = $c->get('Crawler');
+    my $c = Newmo->bootstrap();
 
-    for my $feed (@{ $conf->{feeds} }) {
+    my $scrubber = do {
+        my $conf = $c->config->{'HTML::Scrubber'} // die;
+        my $s = HTML::Scrubber->new();
+           $s->rules( $conf->{rules} );
+           $s->default( $conf->{default} );
+           $s;
+    };
+    my $crawler = Newmo::Crawler->new(db => $c->db, scrubber => $scrubber );
+
+    for my $feed (@{ $c->config->{feeds} }) {
         try {
             $crawler->crawl($feed);
         } catch {

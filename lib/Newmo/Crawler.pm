@@ -1,18 +1,18 @@
 package Newmo::Crawler;
 use Mouse;
+use HTML::EFT;
 use HTML::ResolveLink;
+use HTML::Split;
 use JSON ();
 use LWP::UserAgent;
+use Scope::Guard;
+use Try::Tiny;
+use URI::Escape qw/uri_escape/;
 use URI;
 use XML::Feed::Deduper;
 use XML::Feed;
-use HTML::Split;
 use XMLRPC::Lite;
-use HTML::EFT;
-use Try::Tiny;
-use Scope::Guard;
-use URI::Escape qw/uri_escape/;
-use Amon::Declare;
+use Amon2::Declare;
 
 our $VERSION = 0.02;
 
@@ -88,11 +88,11 @@ sub crawl {
 
     my $txn = $self->db->txn_scope;
 
-    logger->debug("fetching $url");
+    c->log->debug("fetching $url");
     my $feed = XML::Feed->parse(URI->new($url))
         or die XML::Feed->errstr;
 
-    logger->debug("find or create DB row");
+    c->log->debug("find or create DB row");
     my $frow = $self->db->find_or_create(feed => {
         link    => $feed->link,
     });
@@ -105,19 +105,19 @@ sub crawl {
 
     # find or update feed table
     for my $entry (@entries) {
-        logger->debug("  processing @{[ $entry->link ]}");
+        c->log->debug("  processing @{[ $entry->link ]}");
         my $content = $self->entry_full_text($entry->link) || $entry->content->body || 'no body';
-        logger->debug("    after eft");
+        c->log->debug("    after eft");
         $content = $self->scrubber->scrub($content);
-        logger->debug("    after scrub");
+        c->log->debug("    after scrub");
 
         my $erow = $self->db->find_or_create(entry => {
             link    => $entry->link,
             feed_id => $frow->feed_id,
         });
-        logger->debug("    before hatena");
+        c->log->debug("    before hatena");
         my $b_count = $self->get_hatena_bookmark_count($entry->link);
-        logger->debug("    after  hatena");
+        c->log->debug("    after  hatena");
         $erow->update(
             {
                 title    => $entry->title,
@@ -158,7 +158,7 @@ sub get_hatena_bookmark_count {
         if ($res->is_success) {
             return $res->content ? 0+$res->content(): 0; # 0+ means as_int()
         } else {
-            warn "cannot get : " . $res->status_line;
+            warn "cannot get : " . $res->status_line . " at fetching hatena_bookmark_count";
             return 0;
         }
     } catch {
@@ -171,10 +171,10 @@ sub entry_full_text {
     my ($self, $url) = @_;
 
     # fetch full html
-    logger->debug("      fetching full html; $url");
+    c->log->debug("      fetching full html; $url");
     my $res = $self->ua->get($url);
     unless ($res->is_success) {
-        logger->debug("        cannot fetch '$url'");
+        c->log->debug("        cannot fetch '$url'");
     }
     unless (scalar($res->content_type) =~ m{^text/}) {
         # warn "skip $url because " . $res->content_type;
@@ -183,11 +183,11 @@ sub entry_full_text {
     my $content = $res->decoded_content;
 
     # make absolute url
-    logger->debug("      make absolute url");
+    c->log->debug("      make absolute url");
     my $resolver = HTML::ResolveLink->new(base => $url);
     $content = $resolver->resolve($content);
 
-    logger->debug("      extract by HTML::EFT");
+    c->log->debug("      extract by HTML::EFT");
     # extract by HTML::EFT
     $content = $self->eft->extract($url, $content);
     return $content;
