@@ -14,6 +14,13 @@ use XML::Feed;
 use XMLRPC::Lite;
 use Amon2::Declare;
 
+# monkey patch for HTML::TreeBuilder::XPath
+#   https://rt.cpan.org/Ticket/Display.html?id=61746&results=51dd8710bf9494e829bda80fb7a7778b
+sub HTML::Element::getLocalName {
+    ( my $name = $_[0]->tag ) =~ s{^.*:}{};
+    $name;
+}
+
 our $VERSION = 0.02;
 
 has db => (
