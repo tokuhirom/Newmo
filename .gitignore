@@ -4,3 +4,4 @@ inc/
 Makefile
 nytprof/
 nytprof.out
+config/production.pl
