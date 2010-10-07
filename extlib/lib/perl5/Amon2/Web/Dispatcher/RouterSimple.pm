@@ -34,7 +34,6 @@ sub import {
             $router->$meth(@_)
         };
     }
-    *{"$caller\::router"} = sub { $router };
     *{"$caller\::dispatch"} = \&_dispatch;
 }
 

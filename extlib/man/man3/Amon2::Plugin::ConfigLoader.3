@@ -124,13 +124,20 @@
 .\" ========================================================================
 .\"
 .IX Title "Amon2::Plugin::ConfigLoader 3"
-.TH Amon2::Plugin::ConfigLoader 3 "2010-09-28" "perl v5.12.1" "User Contributed Perl Documentation"
+.TH Amon2::Plugin::ConfigLoader 3 "2010-10-06" "perl v5.12.1" "User Contributed Perl Documentation"
 .\" For nroff, turn off justification.  Always turn off hyphenation; it makes
 .\" way too many mistakes in technical documents.
 .if n .ad l
 .nh
 .SH "NAME"
 Amon2::ConfigLoader \- configuration file loader for Amon2
+.SH "SYNOPSIS"
+.IX Header "SYNOPSIS"
+.Vb 3
+\&    package MyApp;
+\&    use parent qw/Amon2/;
+\&    _\|_PACKAGE_\|_\->load_plugins(qw/ConfigLoader/);
+.Ve
 .SH "DESCRIPTION"
 .IX Header "DESCRIPTION"
 This is configuration file loader for Amon2.
