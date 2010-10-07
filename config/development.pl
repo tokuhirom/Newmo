@@ -19,6 +19,8 @@ use File::Spec;
         module => ['Data::Dumper', 'Newmo::V::Xslate::Context'],
         cache => 0,
     },
+    'Log::Dispatch' => {
+    },
     feeds      => [
 #       'http://blog.livedoor.jp/dankogai/index.rdf',
         'http://b.hatena.ne.jp/entrylist?mode=rss&sort=hot&threshold=5',

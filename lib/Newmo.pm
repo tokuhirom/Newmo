@@ -6,7 +6,10 @@ use Carp ();
 
 our $VERSION = '0.01';
 
-__PACKAGE__->load_plugins(qw/ConfigLoader LogDispatch/);
+use Amon2::Config::Simple;
+sub load_config { Amon2::Config::Simple->load(shift) }
+
+__PACKAGE__->load_plugins(qw/LogDispatch/);
 
 use Cache::Memcached::Fast;
 sub memcached {
