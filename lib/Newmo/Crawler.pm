@@ -11,7 +11,6 @@ use URI::Escape qw/uri_escape/;
 use URI;
 use XML::Feed::Deduper;
 use XML::Feed;
-use XMLRPC::Lite;
 use Amon2::Declare;
 
 our $VERSION = 0.02;

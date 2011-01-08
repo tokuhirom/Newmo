@@ -13,9 +13,8 @@ requires 'Mouse';
 requires 'URI';
 requires 'XML::Feed';
 requires 'XML::Feed::Deduper';
-requires 'XMLRPC::Lite';
 requires 'HTML::Split';
-requires 'Amon';
+requires 'Amon2';
 requires 'DBIx::Skinny';
 requires 'Text::Xslate' => 0.1026;
 
