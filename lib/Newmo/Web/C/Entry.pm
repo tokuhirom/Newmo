@@ -1,6 +1,7 @@
 package Newmo::Web::C::Entry;
 use strict;
 use warnings;
+use Log::Minimal;
 
 sub show {
     my ($class, $c, $args) = @_;
@@ -23,7 +24,7 @@ sub show {
         $entry_id, $page_no,
     );
     unless ($entry_page) {
-        warn "cannot get entry_page";
+        warnf("cannot get entry_page: %s, %s", $entry_id, $page_no);
         return $c->res_404();
     }
 
