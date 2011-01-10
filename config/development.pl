@@ -24,13 +24,10 @@ use File::Spec;
     feeds      => [
 #       'http://blog.livedoor.jp/dankogai/index.rdf',
         'http://b.hatena.ne.jp/entrylist?mode=rss&sort=hot&threshold=5',
-        'http://feeds.feedburner.com/hatena/b/hotentry',
-        # 'http://b.hatena.ne.jp/hotentry?mode=rss',
+        'http://b.hatena.ne.jp/hotentry?mode=rss',
         'http://b.hatena.ne.jp/hotentry/news/rss',
         'http://feeds.digg.com/digg/container/technology/popular.rss',
-        'http://api.pathtraq.com/newsite',
-        'http://api.pathtraq.com/popular?__lang=ja',
-        'http://delicious.com/?view=hotlist',
+        'http://feeds.delicious.com/v2/rss/?count=15',
     ],
     'HTML::Scrubber' => {
         rules => {
