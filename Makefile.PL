@@ -14,10 +14,10 @@ requires 'URI';
 requires 'XML::Feed';
 requires 'XML::Feed::Deduper';
 requires 'HTML::Split';
-requires 'Amon2';
+requires 'Amon2' => '2.32';
 requires 'DBIx::Skinny';
 requires 'Text::Xslate' => 0.1026;
-requires 'Log;:Dispatch';
+requires 'Log::Dispatch';
 
 test_requires 'Test::Requires';
 
