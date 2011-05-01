@@ -3,21 +3,23 @@ use inc::Module::Install;
 all_from 'lib/Newmo.pm';
 license 'perl';
 
-requires 'HTTP::MobileAgent';
-requires 'HTML::ExtractContent';
-requires 'HTML::ResolveLink';
-requires 'HTML::TreeBuilder::LibXML';
-requires 'JSON';
-requires 'LWP::UserAgent';
-requires 'Mouse';
-requires 'URI';
-requires 'XML::Feed';
-requires 'XML::Feed::Deduper';
-requires 'HTML::Split';
-requires 'Amon2' => '2.32';
-requires 'DBIx::Skinny';
-requires 'Text::Xslate' => 0.1026;
-requires 'Log::Dispatch';
+requires(
+    'HTTP::MobileAgent'         => 0,
+    'HTML::ExtractContent'      => 0,
+    'HTML::ResolveLink'         => 0,
+    'HTML::TreeBuilder::LibXML' => 0,
+    'JSON'                      => 0,
+    'LWP::UserAgent'            => 0,
+    'Mouse'                     => 0,
+    'URI'                       => 0,
+    'XML::Feed'                 => 0,
+    'XML::Feed::Deduper'        => 0,
+    'HTML::Split'               => 0,
+    'Amon2'                     => '2.32' => 0,
+    'DBIx::Skinny'              => 0,
+    'Text::Xslate'              => 0.1026,
+    'Log::Dispatch'             => 0,
+);
 
 test_requires 'Test::Requires';
 
