@@ -22,13 +22,13 @@ has db => (
 );
 
 sub find_entry {
-    my ( $self, $url ) = @_;
-    return $self->db->{$url};
+    my ( $self, $id ) = @_;
+    return $self->db->{$id};
 }
 
 sub create_entry {
     my ( $self, $id, $digest ) = @_;
-    $self->db->{$url} = $digest;
+    $self->db->{$id} = $digest;
 }
 
 no Any::Moose;
