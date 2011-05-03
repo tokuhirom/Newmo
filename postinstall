@@ -3,5 +3,5 @@
 cd $HOME/code/.; ln -s ../../etc/newmo.pl `pwd`/config/deployment.pl
 echo made a symbolic link to the configuration file.
 
-# crontab - < crontab
-# echo installed crontab
+crontab - < crontab
+echo installed crontab
