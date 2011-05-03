@@ -24,6 +24,7 @@ requires(
 	'DBD::mysql'                => 0,
 	'Scope::Guard'              => 0,
 	'HTML::Scrubber'            => 0,
+	'Try::Tiny'                 => 0,
 );
 
 test_requires 'Test::Requires';
