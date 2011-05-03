@@ -1,3 +1,6 @@
+BEGIN {
+    print "perl: $^X\n";
+}
 use strict;
 use warnings;
 use FindBin;
