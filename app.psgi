@@ -12,7 +12,7 @@ use Plack::Builder;
 builder {
     enable 'Plack::Middleware::Static',
         path => qr{^/static/},
-        root => './htdocs/';
+        root => './';
     enable 'Plack::Middleware::ReverseProxy';
 
     Newmo::Web->to_app();
