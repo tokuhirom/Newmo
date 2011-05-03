@@ -27,6 +27,13 @@ requires(
 	'Try::Tiny'                 => 0,
 );
 
+can_run('cronlog') or do {
+	use File::Temp;
+	my $tmp = File::Temp->new(UNLINK => 1);
+	system "curl -L --output $tmp http://github.com/kazuho/kaztools/tarball/master";
+	system "cpanm -nv $tmp";
+};
+
 test_requires 'Test::Requires';
 
 tests 't/*.t t/*/*.t t/*/*/*.t';
