@@ -1,4 +1,7 @@
 use inc::Module::Install;
+use File::Spec;
+use File::Basename;
+use lib File::Spec->catdir(dirname(__FILE__), 'extlib/lib/perl5/');
 
 all_from 'lib/Newmo.pm';
 license 'perl';

@@ -39,7 +39,7 @@ has deduper => (
     lazy => 1,
     default => sub {
         my $self = shift;
-        XML::Feed::Deduper->new(path => $self->dedup_file);
+        XML::Feed::Deduper->new(engine => 'AnyDBM_File', path => $self->dedup_file);
     },
 );
 
