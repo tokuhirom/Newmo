@@ -1,0 +1,4 @@
+#!/bin/sh
+
+cd $HOME/code/.; ln -s ../../etc/newmo.yml `pwd`/config/deployment.yml
+echo made a symbolic link to the configuration file.
