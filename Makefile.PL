@@ -20,6 +20,7 @@ requires(
     'DBIx::Skinny'              => 0,
     'Text::Xslate'              => 0.1026,
     'Log::Dispatch'             => 0,
+    'Log::Minimal'              => 0,
 );
 
 test_requires 'Test::Requires';
