@@ -11,7 +11,7 @@ requires(
     'HTML::TreeBuilder::LibXML' => 0,
     'JSON'                      => 0,
     'LWP::UserAgent'            => 0,
-    'Mouse'                     => 0,
+    'Mouse'                     => 0.90,
     'URI'                       => 0,
     'XML::Feed'                 => 0,
     'XML::Feed::Deduper'        => 0,
