@@ -22,6 +22,7 @@ requires(
     'Log::Dispatch'             => 0,
     'Log::Minimal'              => 0,
 	'DBD::mysql'                => 0,
+	'Scope::Guard'              => 0,
 );
 
 test_requires 'Test::Requires';
