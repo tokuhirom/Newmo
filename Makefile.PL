@@ -16,7 +16,7 @@ requires(
     'XML::Feed'                 => 0,
     'XML::Feed::Deduper'        => 0,
     'HTML::Split'               => 0,
-    'Amon2'                     => '2.32' => 0,
+    'Amon2'                     => '2.32',
     'DBIx::Skinny'              => 0,
     'Text::Xslate'              => 0.1026,
     'Log::Dispatch'             => 0,
