@@ -1,0 +1,4 @@
+# m h  dom mon dow   command
+MAILTO=tokuhirom@gmail.com
+*/5 *  *   *   *     semaphore --max=1 --file=/tmp/crawler.semaphore -- cronlog perl /home/dotcloud/code/script/cron/crawler.pl
+*/1 * * * * /bin/sh -c 'date >> /tmp/tst.log; date'
