@@ -5,6 +5,7 @@ license 'perl';
 
 requires(
     'HTTP::MobileAgent'         => 0,
+    'Cache::Memcached::Fast'    => 0,
     'HTML::ExtractContent'      => 0,
     'HTML::ResolveLink'         => 0,
     'HTML::TreeBuilder::LibXML' => 0,
@@ -19,7 +20,6 @@ requires(
     'DBIx::Skinny'              => 0,
     'Text::Xslate'              => 0.1026,
     'Log::Dispatch'             => 0,
-	'Cache::Memcached::Fast'    => 0,
 );
 
 test_requires 'Test::Requires';
