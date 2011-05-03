@@ -2,7 +2,7 @@ use strict;
 use warnings;
 use File::Spec;
 use File::Basename;
-use local::lib File::Spec->catdir(dirname(__FILE__), 'extlib');
+use lib File::Spec->catdir(dirname(__FILE__), 'extlib/lib/perl5/');
 use lib File::Spec->catdir(dirname(__FILE__), 'lib');
 use Newmo::Web;
 use Plack::App::File;
