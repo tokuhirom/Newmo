@@ -17,7 +17,7 @@ requires(
     'Mouse'                     => 0.90,
     'URI'                       => 0,
     'XML::Feed'                 => 0,
-    'XML::Feed::Deduper'        => 0,
+    # 'XML::Feed::Deduper'        => 0, XXX now in  extlib/ for DB_Flie workaround. currently dotcloud does not supports libdb4.8
     'HTML::Split'               => 0,
     'Amon2'                     => '2.32',
     'DBIx::Skinny'              => 0,
