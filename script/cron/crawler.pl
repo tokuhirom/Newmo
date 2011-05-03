@@ -1,4 +1,6 @@
 BEGIN {
+    $|++;
+
     print "perl: $^X\n";
     print "PLACK_ENV: $ENV{PLACK_ENV}\n";
 }
