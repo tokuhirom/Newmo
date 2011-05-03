@@ -5,4 +5,4 @@ PLACK_ENV=deployment
 
 # m h  dom mon dow   command
 
-*/5 *  *   *   *     semaphore --max=1 --file=/tmp/crawler.semaphore -- cronlog  --logfile=/tmp/crawler.cronlog perl /home/dotcloud/code/script/cron/crawler.pl
+*/5 *  *   *   *     semaphore --max=1 --file=/tmp/crawler.semaphore -- cronlog  --logfile=/tmp/crawler.cronlog --timestamp perl /home/dotcloud/code/script/cron/crawler.pl
