@@ -15,9 +15,13 @@ sub dispatch {
 
 use Text::Xslate qw/escaped_string/;
 
-# optional configuration
-__PACKAGE__->add_config(
-    'Text::Xslate' => {
+# setup view class
+use Text::Xslate;
+{
+    my $view_conf = __PACKAGE__->config->{'Text::Xslate'} || +{};
+    my $view = Text::Xslate->new(
+        path   => ['./tmpl/'],
+        module => ['Data::Dumper', 'Newmo::V::Xslate::Context'],
         'syntax'   => 'TTerse',
         'module'   => [ 'Text::Xslate::Bridge::TT2Like' ],
         'function' => {
@@ -35,14 +39,8 @@ __PACKAGE__->add_config(
                 }
             }
         },
-    }
-);
-
-# setup view class
-use Tiffany::Text::Xslate;
-{
-    my $view_conf = __PACKAGE__->config->{'Text::Xslate'};
-    my $view = Tiffany::Text::Xslate->new($view_conf);
+        %$view_conf,
+    );
     sub create_view { $view }
 }
 

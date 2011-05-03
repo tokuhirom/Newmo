@@ -15,8 +15,6 @@ use File::Spec;
         namespace => 'dev_Newmo',
     },
     'Text::Xslate' => {
-        path   => ['./tmpl/'],
-        module => ['Data::Dumper', 'Newmo::V::Xslate::Context'],
         cache => 0,
     },
     'Log::Dispatch' => {
