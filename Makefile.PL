@@ -26,5 +26,4 @@ test_requires 'Test::Requires';
 
 tests 't/*.t t/*/*.t t/*/*/*.t';
 recursive_author_tests('xt');
-auto_include;
 WriteAll;
