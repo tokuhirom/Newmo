@@ -3,7 +3,7 @@
 <div class="title">[% entry.title %]</div>
 <div class="body">[% entry_page.body | mark_raw %]</div>
 <div class="link">
-    <a href="[% entry.link %]">[% $entry.link %]</a>
+    <a href="[% entry.link %]">[% entry.link | favicon %][% entry.link %]</a>
     <a href="http://mgw.hatena.ne.jp/?[% entry.link %]">[mgw]</a>
     modified: [% entry.modified %]
     issued: [% entry.issued %]

@@ -1,0 +1,4 @@
+Setup on dotcloud
+=================
+
+    dotcloud deploy -t smtp newmo.mta

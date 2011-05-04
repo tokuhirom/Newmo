@@ -5,7 +5,7 @@
 <div class="feed">
 <ul>
 [% FOR entry IN entries %]
-    <li><a href="[% uri_for("/entry/" _ entry.entry_id _ "/1") %]">[% entry.title %]</a>[% show_hatena_users_count(entry) %]</li>
+    <li>[% entry.link | favicon %]<a href="[% uri_for("/entry/" _ entry.entry_id _ "/1") %]">[% entry.title %]</a>[% show_hatena_users_count(entry) %]</li>
 [% END %]
 </ul>
 </div>

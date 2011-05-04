@@ -21,9 +21,8 @@ use Text::Xslate;
     my $view_conf = __PACKAGE__->config->{'Text::Xslate'} || +{};
     my $view = Text::Xslate->new(
         path   => ['./tmpl/'],
-        module => ['Data::Dumper', 'Newmo::V::Xslate::Context'],
         'syntax'   => 'TTerse',
-        'module'   => [ 'Text::Xslate::Bridge::TT2Like' ],
+        'module'   => [ 'Text::Xslate::Bridge::TT2Like', 'Newmo::V::Context'],
         'function' => {
             c => sub { Amon2->context() },
             uri_with => sub { Amon2->context()->req->uri_with(@_) },
