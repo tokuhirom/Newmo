@@ -1,4 +1,5 @@
 package Newmo::DB::Schema;
+use strict;
 use DBIx::Skinny::Schema;
 
 install_table feed => schema {
