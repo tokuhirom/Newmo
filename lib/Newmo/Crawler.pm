@@ -12,6 +12,7 @@ use URI;
 use XML::Feed::Deduper;
 use XML::Feed;
 use Amon2::Declare;
+use Newmo::Scrubber;
 
 our $VERSION = 0.02;
 
@@ -62,12 +63,6 @@ has chars_per_page => (
     default => 2048,
 );
 
-has 'scrubber' => (
-    is       => 'ro',
-    isa      => 'HTML::Scrubber',
-    required => 1,
-);
-
 has eft => (
     is => 'ro',
     isa => 'HTML::EFT',
@@ -107,7 +102,7 @@ sub crawl {
         c->log->debug("  processing @{[ $entry->link ]}");
         my $content = $self->entry_full_text($entry->link) || $entry->content->body || 'no body';
         c->log->debug("    after eft");
-        $content = $self->scrubber->scrub($content);
+        $content = Newmo::Scrubber->scrub($content);
         c->log->debug("    after scrub");
 
         my $erow = $self->db->find_or_create(entry => {

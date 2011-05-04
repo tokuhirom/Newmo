@@ -13,7 +13,6 @@ use lib File::Spec->catfile($FindBin::Bin, '../../extlib/lib/perl5/');
 use Try::Tiny;
 use Newmo;
 use Newmo::Crawler;
-use HTML::Scrubber;
 
 &main;exit;
 
@@ -22,14 +21,7 @@ use HTML::Scrubber;
 sub main {
     my $c = Newmo->bootstrap();
 
-    my $scrubber = do {
-        my $conf = $c->config->{'HTML::Scrubber'} // die;
-        my $s = HTML::Scrubber->new();
-           $s->rules( $conf->{rules} );
-           $s->default( $conf->{default} );
-           $s;
-    };
-    my $crawler = Newmo::Crawler->new(db => $c->db, scrubber => $scrubber );
+    my $crawler = Newmo::Crawler->new(db => $c->db );
 
     for my $feed (@{ $c->config->{feeds} }) {
         try {
