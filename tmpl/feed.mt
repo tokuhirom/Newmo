@@ -11,6 +11,9 @@
 </div>
 
 <hr class="hr" />
+    <div style="text-align:right">[% feed.link %]</div>
+
+<hr class="hr" />
 
 <div class="pager">
 [% IF page == 1 %]
