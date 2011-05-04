@@ -9,8 +9,6 @@ our $VERSION = '0.01';
 use Amon2::Config::Simple;
 sub load_config { Amon2::Config::Simple->load(shift) }
 
-__PACKAGE__->load_plugins(qw/LogDispatch/);
-
 use Newmo::DB;
 sub db {
     my ($c) = @_;

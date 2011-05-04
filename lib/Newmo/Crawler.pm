@@ -13,6 +13,7 @@ use XML::Feed::Deduper;
 use XML::Feed;
 use Amon2::Declare;
 use Newmo::Scrubber;
+use Log::Minimal;
 
 our $VERSION = 0.02;
 
@@ -82,11 +83,11 @@ sub crawl {
 
     my $txn = $self->db->txn_scope;
 
-    c->log->debug("fetching $url");
+    debugf("fetching $url");
     my $feed = XML::Feed->parse(URI->new($url))
         or die XML::Feed->errstr;
 
-    c->log->debug("find or create DB row");
+    debugf("find or create DB row");
     my $frow = $self->db->find_or_create(feed => {
         link    => $feed->link,
     });
@@ -99,19 +100,19 @@ sub crawl {
 
     # find or update feed table
     for my $entry (@entries) {
-        c->log->debug("  processing @{[ $entry->link ]}");
+        debugf("  processing @{[ $entry->link ]}");
         my $content = $self->entry_full_text($entry->link) || $entry->content->body || 'no body';
-        c->log->debug("    after eft");
+        debugf("    after eft");
         $content = Newmo::Scrubber->scrub($content);
-        c->log->debug("    after scrub");
+        debugf("    after scrub");
 
         my $erow = $self->db->find_or_create(entry => {
             link    => $entry->link,
             feed_id => $frow->feed_id,
         });
-        c->log->debug("    before hatena");
+        debugf("    before hatena");
         my $b_count = $self->get_hatena_bookmark_count($entry->link);
-        c->log->debug("    after  hatena");
+        debugf("    after  hatena");
         $erow->update(
             {
                 title    => $entry->title,
@@ -165,10 +166,10 @@ sub entry_full_text {
     my ($self, $url) = @_;
 
     # fetch full html
-    c->log->debug("      fetching full html; $url");
+    debugf("      fetching full html; $url");
     my $res = $self->ua->get($url);
     unless ($res->is_success) {
-        c->log->debug("        cannot fetch '$url'");
+        debugf("        cannot fetch '$url'");
     }
     unless (scalar($res->content_type) =~ m{^text/}) {
         # warn "skip $url because " . $res->content_type;
@@ -177,11 +178,11 @@ sub entry_full_text {
     my $content = $res->decoded_content;
 
     # make absolute url
-    c->log->debug("      make absolute url");
+    debugf("      make absolute url");
     my $resolver = HTML::ResolveLink->new(base => $url);
     $content = $resolver->resolve($content);
 
-    c->log->debug("      extract by HTML::EFT");
+    debugf("      extract by HTML::EFT");
     # extract by HTML::EFT
     $content = $self->eft->extract($url, $content);
     return $content;

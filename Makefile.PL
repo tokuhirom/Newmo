@@ -21,7 +21,6 @@ requires(
     'Amon2'                     => '2.32',
     'DBIx::Skinny'              => 0,
     'Text::Xslate'              => 0.1026,
-    'Log::Dispatch'             => 0,
     'Log::Minimal'              => 0,
 	'DBD::mysql'                => 0,
 	'Scope::Guard'              => 0,
