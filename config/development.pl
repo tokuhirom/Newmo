@@ -36,6 +36,7 @@ use File::Spec;
             },
             style  => 0,
             script => 0,
+            iframe => 0,
             'link' => {
                 href => qr{^http://},    # only URL with http://
                 rel  => 1,
